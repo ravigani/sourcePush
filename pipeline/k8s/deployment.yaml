@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: samplemdbejbear
+  name: samplemdbejbear
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samplemdbejbear
+  template:
+    metadata:
+      labels:
+        app: samplemdbejbear
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/myproject/samplemdbejbear:latest
+          imagePullPolicy: Always
+          name: samplemdbejbear
+          ports:
+            - containerPort: 9080
+              protocol: TCP
